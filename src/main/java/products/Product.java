@@ -1,9 +1,10 @@
-package Products;
+package main.java.products;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public abstract class Product {
+
     double basicPrice;
     int quality;
     String name;
@@ -37,11 +38,19 @@ public abstract class Product {
         quality = (int) ChronoUnit.DAYS.between(LocalDate.now(), expiryDate);
     }
 
-    void checkQuality(LocalDate date) {
-        quality = (int) ChronoUnit.DAYS.between(LocalDate.now(), expiryDate);
+    public void drawInfo() {
+        System.out.format("%20s %15.2f %10d %15s", this.getName(), this.getPrice(), this.getQuality(), this.getExpiryDate());
+        System.out.println();
     }
 
-    public boolean isSpoiled() {
-        return spoiled;
+    public void drawInfoFuture(LocalDate date) {
+        quality = (int) ChronoUnit.DAYS.between(date, expiryDate);
+        if (!spoiled) {
+            System.out.format("%20s %15.2f %10d", this.getName(), this.getPrice(), this.getQuality());
+            System.out.println();
+        } else {
+            System.out.format("%20s %15.2f %10d %15s", this.getName(), this.getPrice(), this.getQuality(), "X");
+            System.out.println();
+        }
     }
 }

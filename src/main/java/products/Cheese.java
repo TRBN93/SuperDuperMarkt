@@ -1,4 +1,4 @@
-package Products;
+package main.java.products;
 
 import java.time.LocalDate;
 
@@ -9,17 +9,14 @@ public class Cheese extends Product {
     }
 
     @Override
-    public double getPrice(){
-        checkQuality();
-        return basicPrice+ 0.1*getQuality();
+    public double getPrice() {
+        return basicPrice + 0.1 * getQuality();
     }
 
     @Override
-    public int getQuality(){
-        checkQuality();
-        if(quality < 30){
+    public void checkQuality() {
+        if (this.quality < 30) {
             this.spoiled = true;
         }
-        return quality;
     }
 }
